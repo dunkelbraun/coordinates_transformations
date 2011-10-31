@@ -1,0 +1,39 @@
+= Coordinates Transformations -- Point and UTM transformations for GeoKit.
+
+With Coordinates Transformations you can transform GeoKit::LatLng and GeoKit::Bounds into point and utm coordinates.
+
+== Download and installation
+
+The latest version of Coordinates Transformations can be installed with Rubygems:
+  % [sudo] gem install coordinates_transformations
+
+Include the gem in your Gemfile:
+  gem 'coordinates_transformations'
+  
+Source code can be downloaded from Github:
+
+  * http://github.com/dunkelbraun/coordinates_transformations
+
+== Usage
+
+A GeoKit::LatLng object has two new methods available: to_utm, and to_point
+
+  new_york = GeoKit::LatLng.new(40.714353, -74.005973)
+  new_york.to_utm
+  new_york.to_point
+
+  The UTM transformation returns a GeoUtm::UTM
+  The point transformation returns GeoRuby::SimpleFeatures::Point
+  
+A GeoKit::Bounds object has two new methods available: to_utm, and to_point
+  area = GeoKit::Bounds.from_point_and_radius(new_york, 20, {:units => :kms})
+  area.to_utm 
+  area.to_multipoint
+
+  The UTM transformation returns an array of GeoUtm::UTM [sw utm,ne utm]
+  The multipoint returns a GeoRuby::SimpleFeatures::MultiPoint
+
+
+== License
+
+Coordinates Transformations is released under the MIT license.
